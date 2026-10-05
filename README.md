@@ -1,49 +1,29 @@
-# All required libraries are imported here for you.
-import pandas as pd
-from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import train_test_split
-from sklearn import metrics
+S# Statistical Hypothesis Testing & Predictive Modeling in Agriculture
 
-# Load the dataset
-crops = pd.read_csv("soil_measures.csv")
+This repository applies statistical hypothesis testing alongside predictive modeling to agricultural datasets. It provides a framework to validate agricultural hypotheses (e.g., impact of fertilizer types, soil moisture, and climate metrics on crop yield) before building predictive machine learning models.
 
-# Check for missing values
-crops.isna().sum()
+## Key Features
 
-# Check how many crops we have, i.e., multi-class target
-crops.crop.unique()
+- **Hypothesis Testing**:
+  - **T-Test / ANOVA**: Evaluate differences in crop yield across distinct fertilizer treatments or soil management practices.
+  - **Chi-Square Test**: Test independence between soil texture types and crop suitability/disease risk.
+  - **Pearson/Spearman Correlation**: Quantify relationships between environmental parameters (rainfall, temperature, pH) and harvest yield.
+- **Predictive Modeling**:
+  - Regression algorithms (Linear Regression, Random Forest, XGBoost) for crop yield estimation.
+  - Model diagnostic and statistical significance evaluation for feature importances.
+- **Visualization**: Clear plots for distribution analysis, statistical test results, and model evaluation metrics.
 
-# Split into feature and target sets
-X = crops.drop(columns="crop")
-y = crops["crop"]
+## Repository Structure
 
-# Split the data into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(
-    X,
-    y,
-    test_size=0.2,
-    random_state=42
-)
-
-# Create a dictionary to store the model performance for each feature
-feature_performance = {}
-
-# Train a logistic regression model for each feature
-for feature in ["N", "P", "K", "ph"]:
-    log_reg = LogisticRegression(multi_class="multinomial")
-    log_reg.fit(X_train[[feature]], y_train)
-    y_pred = log_reg.predict(X_test[[feature]])
-    
-    # Calculate F1 score, the harmonic mean of precision and recall
-    # Could also use balanced_accuracy_score
-    f1 = metrics.f1_score(y_test, y_pred, average="weighted")
-    
-    # Add feature-f1 score pairs to the dictionary
-    feature_performance[feature] = f1
-    print(f"F1-score for {feature}: {f1}")
-
-# K produced the best F1 score
-# Store in best_predictive_feature dictionary
-best_predictive_feature = {"K": feature_performance["K"]}
-best_predictive_feature# -agri-hypothesis-testing
-Statistical hypothesis testing and predictive modeling pipeline to evaluate agricultural yields, crop health, and environmental factors using Python.
+```text
+├── data/
+│   └── agricultural_data.csv       # Sample dataset
+├── notebooks/
+│   └── hypothesis_and_modeling.ipynb # Step-by-step analytical walkthrough
+├── src/
+│   ├── hypothesis_testing.py       # Statistical test routines
+│   └── predictive_model.py         # ML pipeline and evaluation
+├── main.py                         # End-to-end execution script
+├── requirements.txt                # Python dependencies
+└── README.md                       # Project overview
+tatistical hypothesis testing and predictive modeling pipeline to evaluate agricultural yields, crop health, and environmental factors using Python.
