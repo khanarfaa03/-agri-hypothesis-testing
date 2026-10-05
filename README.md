@@ -1,4 +1,4 @@
-S# Statistical Hypothesis Testing & Predictive Modeling in Agriculture
+# Statistical Hypothesis Testing & Predictive Modeling in Agriculture
 
 This repository applies statistical hypothesis testing alongside predictive modeling to agricultural datasets. It provides a framework to validate agricultural hypotheses (e.g., impact of fertilizer types, soil moisture, and climate metrics on crop yield) before building predictive machine learning models.
 
@@ -26,4 +26,4 @@ This repository applies statistical hypothesis testing alongside predictive mode
 ├── main.py                         # End-to-end execution script
 ├── requirements.txt                # Python dependencies
 └── README.md                       # Project overview
-tatistical hypothesis testing and predictive modeling pipeline to evaluate agricultural yields, crop health, and environmental factors using Python.
+Statistical hypothesis testing and predictive modeling pipeline to evaluate agricultural yields, crop health, and environmental factors using Python.
